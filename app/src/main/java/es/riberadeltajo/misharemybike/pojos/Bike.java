@@ -10,6 +10,7 @@ public class Bike {
     private Double longitude;
     private Double latitude;
     private String location;
+    private String country;
 
     public Double getLatitude() {
         return latitude;
@@ -36,7 +37,13 @@ public class Bike {
     }
 
 
+    public String getCountry() {
+        return country;
+    }
 
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
     public Bitmap getPhoto() {
         return photo;
@@ -70,11 +77,12 @@ public class Bike {
         this.city = city;
     }
 
-    public Bike(String image, String owner, String description, String city, Double longitude, Double latitude, String location, Bitmap photo, String email) {
+    public Bike(String image, String owner, String description, String city, String country, Double longitude, Double latitude, String location, Bitmap photo, String email) {
         this.image = image;
         this.owner = owner;
         this.description = description;
         this.city = city;
+        this.country = country;
         this.longitude = longitude;
         this.latitude = latitude;
         this.location = location;

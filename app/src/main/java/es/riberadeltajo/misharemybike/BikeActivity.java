@@ -15,6 +15,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import es.riberadeltajo.misharemybike.bikes.BikesContent;
 import es.riberadeltajo.misharemybike.databinding.ActivityBikeBinding;
+import es.riberadeltajo.misharemybike.ui.home.HomeFragment;
 
 public class BikeActivity extends AppCompatActivity {
 
@@ -34,10 +35,7 @@ public class BikeActivity extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        //COMPROBAMOS SI ESTÁ VACÍO, PARA QUE NO NOS HAGA UNA LISTA INTERMINABLE
-        if(BikesContent.ITEMS.isEmpty()){
-            BikesContent.loadBikesFromJSON(this);
-        }
+        BikesContent.loadBikesList();
     }
 
     @Override

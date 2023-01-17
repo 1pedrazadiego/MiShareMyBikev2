@@ -27,6 +27,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import es.riberadeltajo.misharemybike.bikes.BikesContent;
+import es.riberadeltajo.misharemybike.ui.home.HomeFragment;
 
 /**
  * @author Diego Pedraza Rafael de la Cruz
@@ -42,9 +43,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(BikesContent.ITEMS.isEmpty()){
-            BikesContent.loadBikesFromJSON(this);
-        }
         setContentView(R.layout.activity_main);
         mAuth=FirebaseAuth.getInstance();
         GoogleSignInOptions gso=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -52,7 +50,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .requestEmail()
                 .build();
         mGoogleSignInClient= GoogleSignIn.getClient(this,gso);
-
+        if(BikesContent.ITEMS.isEmpty()){
+            BikesContent.loadBikesList();
+        }
         signoutButton=findViewById(R.id.signoutButton);
         signInButton=findViewById(R.id.signInButton);
         signoutButton.setOnClickListener(this);

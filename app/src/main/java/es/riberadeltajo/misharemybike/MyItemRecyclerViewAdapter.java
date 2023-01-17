@@ -14,6 +14,7 @@ import android.widget.TextView;
 import es.riberadeltajo.misharemybike.bikes.BikesContent;
 import es.riberadeltajo.misharemybike.placeholder.PlaceholderContent.PlaceholderItem;
 import es.riberadeltajo.misharemybike.databinding.FragmentItemBinding;
+import es.riberadeltajo.misharemybike.pojos.Bike;
 
 import java.util.List;
 
@@ -23,9 +24,9 @@ import java.util.List;
  */
 public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder> {
 
-    private final List<BikesContent.Bike> mValues;
+    private final List<Bike> mValues;
 
-    public MyItemRecyclerViewAdapter(List<BikesContent.Bike> items) {
+    public MyItemRecyclerViewAdapter(List<Bike> items) {
         mValues = items;
     }
 
@@ -48,23 +49,11 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         holder.mBtnEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent();
                 String owner=holder.mOwner.getText().toString();
                 String ciudad=holder.mCiudad.getText().toString();
                 String ubicacion=holder.mUbicacion.getText().toString();
 
-                i.createChooser(i, "Choose the app to send the email");
-                i.setAction(Intent.ACTION_SEND);
-                i.setData(Uri.parse("mail to:"));
-                String to[]={BikesContent.ITEMS.get(holder.getBindingAdapterPosition()).getEmail()};
-                i.putExtra(Intent.EXTRA_EMAIL, to);
-                i.putExtra(Intent.EXTRA_SUBJECT,"Couch App: i'd like to book your bike");
-                String emailTxt="Dear Mr/Mrs "+owner+":\n"+"I'd like to use your bike at "+ubicacion+" ("+ciudad+") \n"+
-                        "for the following date: "+BikesContent.selectedDate+". \n"+"Can you confirm its availability?\n"+
-                        "Kindest regards\n";
-                i.putExtra(Intent.EXTRA_TEXT,emailTxt);
-                i.setType("message/rfc822");
-                view.getContext().startActivity(i);
+
 
             }
         });
@@ -76,7 +65,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public BikesContent.Bike mItem;
+        public Bike mItem;
 
         public final TextView mDescripcion;
         public final TextView mOwner;
